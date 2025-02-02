@@ -1,0 +1,29 @@
+* download and install docker desktop
+
+* install minikube:
+
+To install the latest minikube stable release on x86-64 Windows using .exe download:
+
+Open PowerShell as Administrator.
+Run the following commands:
+
+1.
+New-Item -Path 'c:\' -Name 'minikube' -ItemType Directory -Force
+Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/kubernetes/minikube/releases/latest/download/minikube-windows-amd64.exe' -UseBasicParsing
+
+
+2. (Add the minikube.exe binary to your PATH.)
+$oldPath = [Environment]::GetEnvironmentVariable('Path', [EnvironmentVariableTarget]::Machine)
+if ($oldPath.Split(';') -inotcontains 'C:\minikube'){
+  [Environment]::SetEnvironmentVariable('Path', $('{0};C:\minikube' -f $oldPath), [EnvironmentVariableTarget]::Machine)
+}
+
+(close the terminal and reopen it before running minikube.)
+
+
+
+to start minikube run
+minikube start --driver=docker
+
+install kubectl and run kubectl get nodes to verify Kubectl is connected to Minikube
+	
