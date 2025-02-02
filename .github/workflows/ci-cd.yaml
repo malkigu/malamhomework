@@ -50,12 +50,9 @@ jobs:
       
       - name: Enable Ingress Controller
         run: minikube addons enable ingress
-        
 
       - name: Apply Kubernetes Deployment
         run: |
           kubectl apply -f ./k8s/deployment.yaml
           kubectl apply -f ./k8s/service.yaml
-       
-      - name: Get minkube ip
-        run: minikube ip
+          kubectl apply -f ./k8s/ingress.yaml
