@@ -38,8 +38,11 @@ jobs:
         run: |
           minikube image load your-docker-username/demoapp:latest
 
+      - name: Debug files
+        run: ls -R    
+
       - name: Apply Kubernetes Deployment
         run: |
-          kubectl apply -f k8s/deployment.yaml
-          kubectl apply -f k8s/service.yaml
-          kubectl apply -f k8s/ingress.yaml    
+          kubectl apply -f ./k8s/deployment.yaml
+          kubectl apply -f ./k8s/service.yaml
+          kubectl apply -f ./k8s/ingress.yaml    
