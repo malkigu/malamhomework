@@ -17,7 +17,7 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "$malkigu" --password-stdin
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           docker build -t malkigu/demoapp .
           docker tag malkigu/demoapp malkigu/demoapp:latest
           docker push malkigu/demoapp:latest
