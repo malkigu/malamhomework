@@ -33,13 +33,21 @@ jobs:
           sudo mv kubectl /usr/local/bin/
           minikube start --driver=docker
           kubectl cluster-info
+          kubectl config use-context minikube
           
       - name: Load Docker Image into Minikube
         run: |
           minikube image load malkigu/demoapp:latest
+      
+      - name: Verify Minikube Image
+        run: minikube ssh -- docker images | grep demoapp
 
       - name: Debug files
         run: ls -R    
+      
+      - name: Enable Ingress Controller
+        run: minikube addons enable ingress
+        
 
       - name: Apply Kubernetes Deployment
         run: |
