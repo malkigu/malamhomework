@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
@@ -36,7 +36,7 @@ jobs:
           
       - name: Load Docker Image into Minikube
         run: |
-          minikube image load your-docker-username/demoapp:latest
+          minikube image load malkigu/demoapp:latest
 
       - name: Debug files
         run: ls -R    
