@@ -47,12 +47,18 @@ jobs:
 
       - name: Debug files
         run: ls -R    
-      
-      - name: Enable Ingress Controller
-        run: minikube addons enable ingress
 
       - name: Apply Kubernetes Deployment
         run: |
           kubectl apply -f ./k8s/deployment.yaml
           kubectl apply -f ./k8s/service.yaml
           kubectl apply -f ./k8s/ingress.yaml
+
+      - name: Enable Minikube Ingress
+        run: |
+          minikube addons enable ingress
+
+      - name: Access Minikube IP and Open App
+        run: |
+          minikube ip
+          minikube tunnel
